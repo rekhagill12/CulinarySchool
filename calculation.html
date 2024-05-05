@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Culinary Institute</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Define the animation */
+        @keyframes slideInFromLeft {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Apply the animation to the scroll-left class */
+        .scroll-left {
+            animation: slideInFromLeft 1s ease-out;
+        }
+
+        /* Define animation for the image container */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Apply the animation to the container class */
+        .container {
+            animation: fadeIn 1s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.jpg" alt="Culinary Institute Logo">
+        </div>
+        <h1>Welcome to Culinary Institute</h1>
+       
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="calculation.html">Recipe Calculator</a></li>
+                <li><a href="enrollment.html">Enrollment</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="scroll-left">
+            <p>Welcome to Culinary Institute </p>
+        </div>
+        <section>
+            <h2>Ingredients</h2>
+            <form id="calculator-form">
+                <label for="ingredient">Ingredient:</label>
+                <input type="text" id="ingredient" name="ingredient" required>
+                <label for="calories">Calories per serving:</label>
+                <input type="number" id="calories" name="calories" min="0" required>
+                <label for="serving-size">Serving Size:</label>
+                <input type="number" id="serving-size" name="serving-size" min="0" required>
+                <button type="submit">Add Ingredient</button>
+            </form>
+        </section>
+        <section>
+            <h2>Calculated Calories</h2>
+            <ul id="calories-list">
+               
+            </ul>
+            <p>Total Calories: <span id="total-calories">0</span></p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2024 Culinary Institute. All rights reserved.</p>
+    </footer>
+    <script src="scripts.js"></script>
+    <script>
+        document.getElementById('calculator-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+            
+            // Get values from form inputs
+            var ingredient = document.getElementById('ingredient').value;
+            var calories = parseFloat(document.getElementById('calories').value);
+            var servingSize = parseFloat(document.getElementById('serving-size').value);
+            
+            // Calculate total calories
+            var totalCalories = calories * servingSize;
+
+            // Display the ingredient and calculated calories
+            var caloriesList = document.getElementById('calories-list');
+            var listItem = document.createElement('li');
+            listItem.textContent = ingredient + ': ' + totalCalories + ' calories';
+            caloriesList.appendChild(listItem);
+
+            // Update total calories
+            var currentTotalCalories = parseFloat(document.getElementById('total-calories').textContent);
+            document.getElementById('total-calories').textContent = currentTotalCalories + totalCalories;
+        });
+    </script>
+</body>
+</html>

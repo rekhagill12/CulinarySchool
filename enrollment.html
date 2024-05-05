@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Culinary Institute</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Define the animation */
+        @keyframes slideInFromLeft {
+            0% {
+                transform: translateX(-100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Apply the animation to the scroll-left class */
+        .scroll-left {
+            animation: slideInFromLeft 1s ease-out;
+        }
+
+        /* Define animation for the image container */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Apply the animation to the container class */
+        .container {
+            animation: fadeIn 1s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <header>
+	<div class="logo">
+            <img src="logo.jpg" alt="Culinary Institute Logo">
+        </div>
+        <h1>Welcome to Culinary Institute</h1>
+       
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="calculation.html">Recipe Calculator</a></li>
+                <li><a href="enrollment.html">Enrollment</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <form id="enrollment-form">
+            <label for="full-name">Full Name:</label>
+            <input type="text" id="full-name" name="full-name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="phone">Phone:</label>
+            <input type="tel" id="phone" name="phone" required>
+            
+            <label for="course">Select Course:</label>
+            <select id="course" name="course" required>
+                <option value="">Select</option>
+                <option value="cooking">Cooking Basics</option>
+                <option value="baking">Artisan Bread Baking</option>
+                <option value="pastry">French Pastry</option>
+                <option value="cuisine">World Cuisine</option>
+            </select>
+            
+            <label for="message">Message (optional):</label>
+            <textarea id="message" name="message" rows="4"></textarea>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2024 Culinary Institute. All rights reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

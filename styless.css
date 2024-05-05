@@ -1,0 +1,45 @@
+// Get the form and the elements inside it
+const form = document.getElementById('calculator-form');
+const caloriesList = document.getElementById('calories-list');
+const totalCalories = document.getElementById('total-calories');
+
+// Event listener for form submission
+form.addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the form from submitting normally
+    
+    // Get the values from the form inputs
+    const ingredient = form.elements['ingredient'].value;
+    const calories = parseFloat(form.elements['calories'].value);
+    const servingSize = parseFloat(form.elements['serving-size'].value);
+
+    // Calculate the total calories for the ingredient
+    const ingredientCalories = (calories * servingSize).toFixed(2);
+
+    // Create a new list item to display the ingredient and its calories
+    const listItem = document.createElement('li');
+    listItem.textContent = `${ingredient}: ${ingredientCalories} calories`;
+
+    // Append the new list item to the calories list
+    caloriesList.appendChild(listItem);
+
+    // Update the total calories
+    updateTotalCalories();
+    
+    // Clear the form inputs
+    form.reset();
+});
+
+// Function to update the total calories
+function updateTotalCalories() {
+    const calorieItems = document.querySelectorAll('#calories-list li');
+    let total = 0;
+
+    // Loop through each list item and sum up the calories
+    calorieItems.forEach(item => {
+        const calories = parseFloat(item.textContent.split(':')[1]);
+        total += calories;
+    });
+
+    // Update the total calories displayed on the page
+    totalCalories.textContent = total.toFixed(2);
+}
